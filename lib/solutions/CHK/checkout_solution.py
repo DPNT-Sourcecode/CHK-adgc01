@@ -28,7 +28,7 @@ prices = {
         'price' : 40,
         'offer' : {
             'count' : 2,
-            'discount_price' : -30,
+            'discount_price' : 10,
         },
     },
 }
@@ -80,4 +80,7 @@ def checkout(skus):
                     basketSum += (itemPrice * prices[item]['price'])
 
         return basketSum
+
+
+print(checkout("AAABEE"))
 
