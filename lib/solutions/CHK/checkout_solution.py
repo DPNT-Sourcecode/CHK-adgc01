@@ -4,16 +4,16 @@ from collections import Counter
 prices = {
     'A' : {
         'price' : 50,
-        'offer' : {
-            3 : {
-                'count' : 3,
-                'discount_price' : 130
-            },
-            5 : {
-                'count' : 5,
-                'discount_price' : 200
-            },
-        },
+        # 'offer' : {
+        #     3 : {
+        #         'count' : 3,
+        #         'discount_price' : 130
+        #     },
+        #     5 : {
+        #         'count' : 5,
+        #         'discount_price' : 200
+        #     },
+        # },
     },
     'B' : {
         'price' : 30,
@@ -60,6 +60,7 @@ def checkout(skus):
                 # check for offers
                 if 'offer' in prices[item] :
 
+                    # 
                     # base prices apply
                     if itemCount < prices[item]['offer']['count']:
                         basketSum += (itemCount * prices[item]['price'])
@@ -85,4 +86,5 @@ def checkout(skus):
 
 
 print(checkout("AAABBEE"))
+
 
