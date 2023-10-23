@@ -41,8 +41,17 @@ def checkout(skus):
         # return sum
         basketSum = 0
         for item, count in basket.items():
-            
+            # check for offers
+            if item in prices:
+                # apply offer price
+                if('offer' in prices[item]):
+                    if(count >= prices[item]['offer']):
+                        # apply offer multiple times if needed
+                        if(count % )
+                        basketSum += 
+
             basket +=
+
 
 
 
