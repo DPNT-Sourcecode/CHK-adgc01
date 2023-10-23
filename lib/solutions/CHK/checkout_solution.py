@@ -20,5 +20,5 @@ def checkout(skus):
         # basketSum = 0
         # for item, count in basket.items():
         #     basket +=
-        
-    
+
+
