@@ -8,7 +8,7 @@ prices = {
         'price' : '50',
         'offer' : {
             'count' : 3,
-            'discount_price' : 150,
+            'discount_price' : 130,
         },
     },
     'B' : {
@@ -49,31 +49,29 @@ def checkout(skus):
 
                 # check for offers
                 if('offer' in prices[item]):
+                    print("Has offer")
 
                     # check if count of items meets the minimum offer count
                     if(count >= prices[item]['offer']['count']):
+                        print("Meets offer count")
 
                         # apply offer multiple times
                         if(count % prices[item]['offer']['count'] == 0 ):
+                            print("Has multiple offer")
                             basketSum += (count/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
+                            print(basketSum)
                         else:
+                            print("No multiple offers")
                             offerEligible = (count // prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
                             offerInEligible = (count % prices[item]['offer']['count']) * prices[item]['price']
                             basketSum += offerEligible + offerInEligible
 
                 # doesn't meet offer minimum
                 else :
+                    print("Has no offer")
                     basketSum += count * prices[item]['price']
 
         return basketSum
 
 
 print(checkout("AAABB"))
-
-
-
-
-
-
-
-
