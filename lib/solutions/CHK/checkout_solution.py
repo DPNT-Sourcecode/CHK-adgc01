@@ -5,8 +5,14 @@ prices = {
     'A' : {
         'price' : 50,
         'offer' : {
-            'count' : 3,
-            'discount_price' : 130,
+            3 : {
+                'count' : 3,
+                'discount_price' : 130
+            },
+            5 : {
+                'count' : 5,
+                'discount_price' : 200
+            },
         },
     },
     'B' : {
@@ -26,7 +32,7 @@ prices = {
         'price' : 40,
         'offer' : {
             'count' : 2,
-            'discount_price' : 10,
+            'discount_price' : 10, # price of E - price of B, might conflict with 2B offer
         },
     },
 }
@@ -64,11 +70,9 @@ def checkout(skus):
                         # apply offer multiple times
                         if(itemPrice % prices[item]['offer']['count'] == 0 ):
                             basketSum += (itemPrice/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
-                            print(basketSum)
                         
                         # some quantities qualify for offer
                         else:
-                            print("some quantities")
                             offerEligible = (itemPrice // prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
                             offerInEligible = (itemPrice % prices[item]['offer']['count']) * prices[item]['price']
                             basketSum += offerEligible + offerInEligible
@@ -81,6 +85,3 @@ def checkout(skus):
 
 
 print(checkout("AAABBEE"))
-
-
-
