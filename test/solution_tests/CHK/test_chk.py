@@ -9,4 +9,3 @@ testData = {
 
 for test in testData:
     assert test['answer'] == checkout(test['skus'])
-

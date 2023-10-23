@@ -74,5 +74,3 @@ def checkout(skus):
                     basketSum += (itemPrice * prices[item]['price'])
 
         return basketSum
-
-
