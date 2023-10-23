@@ -42,6 +42,7 @@ def checkout(skus):
         basketSum = 0
         for item, count in basket.items():
 
+            print(f"{item}, {count}")
             # invalid skus
             if item not in prices:
                 return -1
@@ -67,3 +68,7 @@ def checkout(skus):
                     basketSum += count * prices[item]['price']
 
         return basketSum
+
+
+for _ in ['A', 'B', 'ABCD'] :
+    print(checkout(_))
