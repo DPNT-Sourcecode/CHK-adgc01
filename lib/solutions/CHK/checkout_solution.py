@@ -2,15 +2,30 @@
 
 from collections import Counter
 
+# nested dict to track sku prices & offers
 prices = {
     'A' : {
         'price' : '50',
         'offer' : {
-            'count'    : 3,
-            'discount' : 
-        }
-    }
+            'count' : 3,
+            'discount_price' : 150,
+        },
+    },
+    'B' : {
+        'price' : 30,
+        'offer' : {
+            'count' : 2,
+            'discount_price' : 45,
+        },
+    },
+    'C' : {
+        'price' : 20,
+    },
+    'D' : {
+        'price' : 15,
+    },
 }
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -26,7 +41,9 @@ def checkout(skus):
         # return sum
         basketSum = 0
         for item, count in basket.items():
+            
             basket +=
+
 
 
 
