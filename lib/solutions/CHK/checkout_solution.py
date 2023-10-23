@@ -22,6 +22,3 @@ def checkout(skus):
         #     basket +=
         
     
-
-
-
