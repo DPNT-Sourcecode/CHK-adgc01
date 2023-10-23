@@ -7,7 +7,10 @@ def checkout(skus):
     if(not isinstance(skus, str)) :
         return -1
     else :
-        # split string into list & count occurrences of each 
-        # 
+        # define special offers (not yet)
+        # split string into list & count occurrences of each character
+        skus = list(skus)
+        # return sum
     
+
 
