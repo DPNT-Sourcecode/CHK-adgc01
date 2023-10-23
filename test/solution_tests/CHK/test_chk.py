@@ -1,6 +1,8 @@
 # import sys
 # sys.path.append('C:/Users/mohde/Desktop/accelerate_runner/lib/')
 
+from __future__ import absolute_import
+
 from ..lib.solutions.CHK.checkout_solution import checkout_solution
 
 testData = {
@@ -9,3 +11,4 @@ testData = {
 
 for test in testData:
     assert test['answer'] == checkout(test['skus'])
+

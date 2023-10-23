@@ -80,6 +80,7 @@ def checkout(skus):
         return basketSum
 
 
-print(checkout("AAABEE"))
+print(checkout("AAABBEE"))
+
 
 
