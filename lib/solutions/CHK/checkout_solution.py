@@ -51,31 +51,34 @@ def checkout(skus):
                 # check for offers
                 if('offer' in prices[item]):
 
-                    # check if count of items meets the minimum offer count
-                    if(count >= prices[item]['offer']['count']):
+                    # base prices apply
+                    if(count < prices[item]['offer']['count']):
+                        print("base prices")
+                        basketSum += (count * prices[item]['price'])
+
+                    # offer prices apply
+                    else:
 
                         # apply offer multiple times
                         if(count % prices[item]['offer']['count'] == 0 ):
                             basketSum += (count/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
                             print(basketSum)
+                        
+                        # some quantities qualify for offer
                         else:
-                            # some quantities qualify for offer
-                            if(count % prices[item]['offer']['count'] != 0):
-                                print("some quantities")
-                                offerEligible = (count // prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
-                                offerInEligible = (count % prices[item]['offer']['count']) * prices[item]['price']
-                                basketSum += offerEligible + offerInEligible
-                            else :
-                                print("base prices")
-                                basketSum += count * prices[item]['price']
+                            print("some quantities")
+                            offerEligible = (count // prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
+                            offerInEligible = (count % prices[item]['offer']['count']) * prices[item]['price']
+                            basketSum += offerEligible + offerInEligible
 
                 # doesn't meet offer minimum
                 else :
-                    basketSum += count * prices[item]['price']
+                    basketSum += (count * prices[item]['price'])
 
         return basketSum
 
 
 for _ in ['A', 'B', 'ABCD'] :
     print(checkout(_))
+
 
