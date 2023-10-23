@@ -5,7 +5,7 @@ from collections import Counter
 # nested dict to track sku prices & offers
 prices = {
     'A' : {
-        'price' : '50',
+        'price' : 50,
         'offer' : {
             'count' : 3,
             'discount_price' : 130,
@@ -40,9 +40,8 @@ def checkout(skus):
 
         # calculate basket sum
         basketSum = 0
-        for item, count in basket.items():
+        for item, itemPrice in basket.items():
 
-            print(f"{item}, {count}")
             # invalid skus
             if item not in prices:
                 return -1
@@ -52,33 +51,28 @@ def checkout(skus):
                 if('offer' in prices[item]):
 
                     # base prices apply
-                    if(count < prices[item]['offer']['count']):
-                        print("base prices")
-                        basketSum += (count * prices[item]['price'])
+                    if(itemPrice < prices[item]['offer']['count']):
+                        basketSum += (itemPrice * prices[item]['price'])
 
                     # offer prices apply
                     else:
 
                         # apply offer multiple times
-                        if(count % prices[item]['offer']['count'] == 0 ):
-                            basketSum += (count/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
+                        if(itemPrice % prices[item]['offer']['count'] == 0 ):
+                            basketSum += (itemPrice/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
                             print(basketSum)
                         
                         # some quantities qualify for offer
                         else:
                             print("some quantities")
-                            offerEligible = (count // prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
-                            offerInEligible = (count % prices[item]['offer']['count']) * prices[item]['price']
+                            offerEligible = (itemPrice // prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
+                            offerInEligible = (itemPrice % prices[item]['offer']['count']) * prices[item]['price']
                             basketSum += offerEligible + offerInEligible
 
                 # doesn't meet offer minimum
                 else :
-                    basketSum += (count * prices[item]['price'])
+                    basketSum += (itemPrice * prices[item]['price'])
 
         return basketSum
-
-
-for _ in ['A', 'B', 'ABCD'] :
-    print(checkout(_))
 
 
