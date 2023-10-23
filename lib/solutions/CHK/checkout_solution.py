@@ -57,7 +57,7 @@ def checkout(skus):
                         if(count % prices[item]['offer']['count'] == 0 ):
                             basketSum += (count/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
                         else:
-                            eligibleItems = count % prices[item]['offer']['count']
+                            offerEligibleCount = count % prices[item]['offer']['count']
                             basketSum += (count/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
 
                 # doesn't meet offer minimum
@@ -65,6 +65,7 @@ def checkout(skus):
                     basketSum += count * prices[item]['price']
 
         return basketSum
+
 
 
 
