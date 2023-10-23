@@ -32,7 +32,7 @@ prices = {
         'price' : 40,
         'offer' : {
             'count' : 2,
-            'discount_price' : 10, # price of E - price of B, might conflict with 2B offer
+            'discount_price' : 10, # price of E - price of B, offer 2E >>> offer 2B
         },
     },
 }
