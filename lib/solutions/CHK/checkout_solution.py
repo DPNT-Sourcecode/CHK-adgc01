@@ -50,8 +50,14 @@ def checkout(skus):
                 # check for offers
                 if('offer' in prices[item]):
 
-                    # check if count of items meets the minimum offer count & apply offer multiple times if needed
-                    if(count >= prices[item]['offer']) and (count % prices[item]['offer']['count'] == 0 ):
+                    # check if count of items meets the minimum offer count
+                    if(count >= prices[item]['offer']):
+
+                        # apply offer multiple times
+                        if(count % prices[item]['offer']['count'] == 0 ):
+                            basketSum += (count/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
+                        else:
+                            eligibleItems = count % prices[item]['offer']['count']
                             basketSum += (count/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
 
                 # doesn't meet offer minimum
@@ -59,6 +65,7 @@ def checkout(skus):
                     basketSum += count * prices[item]['price']
 
         return basketSum
+
 
 
 
