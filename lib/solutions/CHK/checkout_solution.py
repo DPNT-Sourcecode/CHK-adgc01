@@ -1,5 +1,3 @@
-
-
 from collections import Counter
 
 # nested dict to track sku prices & offers
@@ -83,4 +81,5 @@ def checkout(skus):
 
 
 print(checkout("AAABEE"))
+
 
