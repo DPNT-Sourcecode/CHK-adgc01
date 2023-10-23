@@ -38,24 +38,28 @@ def checkout(skus):
         skus = list(skus)
         basket = Counter(skus)
 
-        # return sum
+        # calculate basket sum
         basketSum = 0
         for item, count in basket.items():
 
-            # check for offers
-            if item in prices:
+            # invalid skus
+            if item not in prices:
+                return -1
+            else :
 
-                # apply offer price
+                # check for offers
                 if('offer' in prices[item]):
-                    if(count >= prices[item]['offer']):
 
-                        # apply offer multiple times if needed
-                        if(count % prices[item]['offer']['count'] == 0 ):
+                    # check if count of items meets the minimum offer count & apply offer multiple times if needed
+                    if(count >= prices[item]['offer']) and (count % prices[item]['offer']['count'] == 0 ):
                             basketSum += (count/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
-                        else :
-                            basketSum += 
 
-            basket +=
+                # doesn't meet offer minimum
+                else :
+                    basketSum += count * prices[item]['price']
+
+        return basketSum
+
 
 
 
