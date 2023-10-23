@@ -24,16 +24,22 @@ prices = {
     'D' : {
         'price' : 15,
     },
+    'E' : {
+        'price' : 40,
+        'offer' : {
+            'count' : 2,
+            'discount_price' : -30,
+        },
+    },
 }
 
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    # verify input
+    # invalid input
     if(not isinstance(skus, str)) :
         return -1
     else :
-        # define special offers (not yet)
         # split string into list & count occurrences of each character
         skus = list(skus)
         basket = Counter(skus)
@@ -74,3 +80,4 @@ def checkout(skus):
                     basketSum += (itemPrice * prices[item]['price'])
 
         return basketSum
+
