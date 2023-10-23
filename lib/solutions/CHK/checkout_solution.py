@@ -50,7 +50,7 @@ def checkout(skus):
 
         # calculate basket sum
         basketSum = 0
-        for item, itemPrice in basket.items():
+        for item, itemCount in basket.items():
 
             # invalid skus
             if item not in prices:
@@ -58,30 +58,31 @@ def checkout(skus):
             else :
 
                 # check for offers
-                if('offer' in prices[item]):
+                if 'offer' in prices[item] :
 
                     # base prices apply
-                    if(itemPrice < prices[item]['offer']['count']):
-                        basketSum += (itemPrice * prices[item]['price'])
+                    if itemCount < prices[item]['offer']['count']:
+                        basketSum += (itemCount * prices[item]['price'])
 
                     # offer prices apply
                     else:
 
                         # apply offer multiple times
-                        if(itemPrice % prices[item]['offer']['count'] == 0 ):
-                            basketSum += (itemPrice/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
+                        if itemCount % prices[item]['offer']['count'] == 0 :
+                            basketSum += (itemCount/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
                         
                         # some quantities qualify for offer
                         else:
-                            offerEligible = (itemPrice // prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
-                            offerInEligible = (itemPrice % prices[item]['offer']['count']) * prices[item]['price']
+                            offerEligible = (itemCount // prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
+                            offerInEligible = (itemCount % prices[item]['offer']['count']) * prices[item]['price']
                             basketSum += offerEligible + offerInEligible
 
                 # doesn't meet offer minimum
                 else :
-                    basketSum += (itemPrice * prices[item]['price'])
+                    basketSum += (itemCount * prices[item]['price'])
 
         return basketSum
 
 
 print(checkout("AAABBEE"))
+
