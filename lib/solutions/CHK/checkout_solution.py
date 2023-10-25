@@ -48,7 +48,6 @@ def checkout(skus):
 
         # calculate basket sum
         for item, itemCount in basket.items():
-            print(f"Item {item}, Sum {basketSum}")
             # invalid skus
             if item not in prices:
                 return -1
@@ -86,22 +85,19 @@ def checkout(skus):
                                     basketSum += (price * minOfferQuantity)
                                     basket[relatedItem] -= 1
 
-                        # offer applied, reduce total item count by offer minimum amount (e.g 4A-3A)
-                        itemCount -= minOfferQuantity
+                            # offer applied, reduce total item count by offer minimum amount (e.g 4A-3A)
+                            itemCount -= minOfferQuantity
 
-                        # update offer applied flag & exit loop
-                        offerApplied = True
-                        break
+                            # update offer applied flag & exit loop
+                            offerApplied = True
+                            break
 
                     # no offers applied
                     if not offerApplied :
-                        print("No offers applied")
                         basketSum += price
 
-        print(f"Basket {basket}")
         return basketSum
 
-print(checkout("A"))
 
 
 
