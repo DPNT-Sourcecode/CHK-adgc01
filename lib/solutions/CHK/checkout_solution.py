@@ -62,8 +62,13 @@ def checkout(skus):
                 offers = prices[item]['offers']
                 itemCombinations = []
 
-                # offer exist, apply higher offers first
-                    # for offer, discount in sorted(offers.items(), key=sortOffersByHighestQuantity, reverse=True):
+                # get offer combinations
+                for offer, discount in sorted(offers.items(), key=sortOffersByHighestQuantity, reverse=True):
+                    # retrieve offer quantity (e.g. 3A)
+                    minOfferQuantity = int(offer[0])
+                    combinations = itemCount // minOfferQuantity
+
+
                 # calculate cost of each sku
                 while itemCount > 0:
                     offerApplied = False
@@ -108,5 +113,6 @@ def checkout(skus):
         return basketSum
 
 print(checkout('AAA'))
+
 
 
