@@ -38,6 +38,7 @@ def checkout(skus):
     else :
         # split string into list & count occurrences of each character
         basket, basketSum = Counter(list(skus)), 0
+        print(f"Basket {basket.items()}")
 
         # calculate basket sum
         for item, itemCount in basket.items():
@@ -45,7 +46,6 @@ def checkout(skus):
             if item not in prices:
                 return -1
             else :
-                print(f"Basket {basket}")
                 # retrieve sku info
                 price = prices[item]['price']
                 offers = prices[item]['offers']
@@ -90,7 +90,8 @@ def checkout(skus):
                     if not offerApplied :
                         basketSum += price
 
+        print(f"Basket {basket}")
         return basketSum
 
-print(checkout('ABCDEF'))
+print(checkout('ABCDE'))
 
