@@ -63,28 +63,33 @@ def checkout(skus):
                         # retrieve offer quantity e.g. 3A
                         minOfferQuantity = int(offer[0])
 
-                        # check if offer quantities apply
+                        # apply offer discount
                         if itemCount >= minOfferQuantity:
 
-                            # apply offer multiple times
-                            if itemCount % prices[item]['offer']['count'] == 0 :
-                                basketSum += (itemCount/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
+                            # apply simple offers
+                            if isinstance(discount, int):
+                                basketSum += discount
                             
-                            # some quantities qualify for offer
+                            # apply bogo discount
                             else:
-                                offerEligible = (itemCount // prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
-                                offerInEligible = (itemCount % prices[item]['offer']['count']) * prices[item]['price']
-                                basketSum += offerEligible + offerInEligible
+                                # TODO handle discount for 2E
+                                print('TODO Bogo offer')
+                            
+                        # offer applied, reduce total item count by offer minimum amount (e.g 4A-3A)
+                        # 
 
-                        # base prices apply
-                        else:
-                            basketSum += (itemCount * prices[item]['price'])
+
+
+                    # base prices apply
+                    else:
+                        basketSum += (itemCount * prices[item]['price'])
 
                     # doesn't meet offer minimum quantity
                     else :
                         basketSum += price
 
         return basketSum
+
 
 
 
