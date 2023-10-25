@@ -37,10 +37,14 @@ def checkout(skus):
         return -1
     else :
 
-        for basketItem, 
-        # split string into list & count occurrences of each character
-        skus = list(skus)
-        basket, basketSum = Counter(skus), 0
+        basket, basketSum = {}, 0
+
+        # count occurrences of each sku
+        for sku in skus:
+            if sku in prices:
+                basket[sku] = basket.get(sku, 0) + 1
+            else:
+                return -1
 
         # calculate basket sum
         for item, itemCount in basket.items():
@@ -98,5 +102,6 @@ def checkout(skus):
         return basketSum
 
 print(checkout("A"))
+
 
 
