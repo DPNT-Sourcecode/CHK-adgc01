@@ -4,26 +4,15 @@ from collections import Counter
 prices = {
     'A' : {
         'price' : 50,
-        # 'offer' : {
-        #     3 : {
-        #         'count' : 3,
-        #         'discount_price' : 130
-        #     },
-        #     5 : {
-        #         'count' : 5,
-        #         'discount_price' : 200
-        #     },
-        # },
+        'offer' : { 3 : 130, 5 : 200 }
     },
     'B' : {
         'price' : 30,
-        'offer' : {
-            'count' : 2,
-            'discount_price' : 45,
-        },
+        'offer' : { 2 : 45 },
     },
     'C' : {
         'price' : 20,
+        'offer' : {}
     },
     'D' : {
         'price' : 15,
