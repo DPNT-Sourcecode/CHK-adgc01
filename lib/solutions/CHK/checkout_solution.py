@@ -4,33 +4,29 @@ from collections import Counter
 prices = {
     'A' : {
         'price' : 50,
-        # 'offer' : {
-        #     3 : {
-        #         'count' : 3,
-        #         'discount_price' : 130
-        #     },
-        #     5 : {
-        #         'count' : 5,
-        #         'discount_price' : 200
-        #     },
-        # },
+        'offers' : {
+            3 : 130,
+            5 : 200
+        },
     },
     'B' : {
         'price' : 30,
-        'offer' : {
+        'offers' : {
             'count' : 2,
             'discount_price' : 45,
         },
     },
     'C' : {
         'price' : 20,
+        'offers' : {},
     },
     'D' : {
         'price' : 15,
+        'offers' : {},
     },
     'E' : {
         'price' : 40,
-        'offer' : {
+        'offers' : {
             'count' : 2,
             'discount_price' : 10, # price of E - price of B, offer 2E >>> offer 2B
         },
@@ -86,4 +82,5 @@ def checkout(skus):
 
 
 print(checkout("AAABBEE"))
+
 
