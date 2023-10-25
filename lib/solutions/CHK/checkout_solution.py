@@ -24,7 +24,7 @@ prices = {
     },
     'E' : {
         'price' : 40,
-        'offers' : { '2E' : 'B' } # 2E => -1B
+        'offers' : { '2E' : 'B' }
     },
 }
 
@@ -57,27 +57,24 @@ def checkout(skus):
                     # offer exist, apply higher offers first
                     for offer, discount in sorted(offers.items()):
                         
-                        # retrieve offer quantity e.g. 3A
+                        # retrieve offer quantity (e.g. 3A)
                         minOfferQuantity = int(offer[0])
 
                         # apply offers until item count < minimum offer quantities
                         if itemCount >= minOfferQuantity:
-                            print("Offer applies")
 
                             # apply simple offers
                             if isinstance(discount, int):
                                 basketSum += discount
                             
-                            # apply discount on related item
+                            # apply discount on related item (e.g. 2E => -1B from basket)
                             else:
-                                # TODO handle discount for 2E
-                                print('TODO Bogo offer')
 
                                 # check if basket contains related offer item
                                 relatedItem = discount
                                 relatedItemCount = basket.get(relatedItem, 0)
 
-                                # check if basket contains related offer item
+                                # apply bogo offer, remove free item from basket
                                 if relatedItemCount > 0:
                                     basketSum += (price * minOfferQuantity)
                                     basket[relatedItem] -= 1
@@ -85,21 +82,12 @@ def checkout(skus):
                         # offer applied, reduce total item count by offer minimum amount (e.g 4A-3A)
                         itemCount -= minOfferQuantity
 
-                        # update offer applied flag & exit
+                        # update offer applied flag & exit loop
                         offerApplied = True
                         break
 
-                    # doesn't meet offer minimum quantity
+                    # no offers applied
                     if not offerApplied :
-                        print("No offers")
                         basketSum += price
 
         return basketSum
-
-print(checkout("EEB"))
-
-
-
-
-
-
