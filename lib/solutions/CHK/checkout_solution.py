@@ -33,7 +33,7 @@ prices = {
 def checkout(skus):
 
     # invalid input
-    if not isinstance(skus, str) or len(skus) < 1:
+    if not isinstance(skus, str):
         return -1
     else :
 
@@ -97,4 +97,5 @@ def checkout(skus):
                         basketSum += price
 
         return basketSum
+
 
