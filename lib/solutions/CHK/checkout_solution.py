@@ -58,9 +58,15 @@ def checkout(skus):
                     offerApplied = False
 
                     # sift through offers, apply higher offers first
+                    for offer, discount in sorted(offers.items()):
+                        quantity = int(offer[0])
+
+
+
+
 
                     # check for offers
-                    if 'offer' in prices[item] :
+                    # if 'offer' in prices[item] :
 
                         # base prices apply
                         if itemCount < prices[item]['offer']['count']:
@@ -84,6 +90,7 @@ def checkout(skus):
                         basketSum += (itemCount * prices[item]['price'])
 
         return basketSum
+
 
 
 
