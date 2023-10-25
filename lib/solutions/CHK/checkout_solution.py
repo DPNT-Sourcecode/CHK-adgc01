@@ -96,8 +96,8 @@ def checkout(skus):
                         tempBasketSum += (price * offerQuantity)
                         tempBasket[relatedItem] -= 1
                         tempBasket[item] -= offerQuantity
-                    else:
-                        basketSum += (price * itemCount)
+                    # else:
+                    #     basketSum += (price * itemCount)
 
 
                 # calculate cost of each sku
@@ -149,4 +149,5 @@ def checkout(skus):
     
         return basketSum
 
+print(checkout("BEBEEE"))
 
