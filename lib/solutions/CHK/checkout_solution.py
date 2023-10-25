@@ -53,23 +53,29 @@ def checkout(skus):
 
         # calculate basket sum
         for item, itemCount in basket.items():
-            # invalid skus
-            if item not in prices:
-                return -1
-            else :
-                # retrieve sku info
-                price = prices[item]['price']
-                offers = prices[item]['offers']
-                itemCombinations = []
 
-                # get offer combinations
-                for offer, discount in sorted(offers.items(), key=sortOffersByHighestQuantity, reverse=True):
-                    # retrieve offer quantity (e.g. 3A)
-                    offerQuantity = int(offer[0])
-                    combinations = itemCount // offerQuantity
-                    itemCombinations.extend([offer] * combinations)
+            # retrieve sku info
+            price = prices[item]['price']
+            offers = prices[item]['offers']
+            itemCombinations = []
 
-                offerCombinations = [ combination for combination in offerCombinations for itemOffer in itemCombinations ]
+            # get offer combinations
+            for offer, discount in sorted(offers.items(), key=sortOffersByHighestQuantity, reverse=True):
+                # retrieve offer quantity (e.g. 3A)
+                offerQuantity = int(offer[0])
+                combinations = itemCount // offerQuantity
+                itemCombinations.extend([offer] * combinations)
+
+            offerCombinations = [ combination + [itemOffer] for combination in offerCombinations for itemOffer in itemCombinations ]
+
+        # try all offer combinations and pick the one with the lowest amount
+        for offerCombination in offerCombinations:
+            _basket = dict(basket)
+            _basketSum = 0
+
+            for itemOffer in offerCombination:
+
+
 
                 # calculate cost of each sku
                 while itemCount > 0:
@@ -115,6 +121,7 @@ def checkout(skus):
         return basketSum
 
 print(checkout('AAA'))
+
 
 
 
