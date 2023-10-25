@@ -37,9 +37,7 @@ def checkout(skus):
         return -1
     else :
         # split string into list & count occurrences of each character
-        skus = list(skus)
-        basket = Counter(skus)
-        basketSum = 0
+        basket, basketSum = Counter(list(skus)), 0
 
         # calculate basket sum
         for item, itemCount in basket.items():
@@ -82,17 +80,12 @@ def checkout(skus):
                         offerApplied = True
                         break
 
-
-                    # base prices apply
-                    else:
-                        basketSum += (itemCount * prices[item]['price'])
-
                     # doesn't meet offer minimum quantity
-                    else :
-                        basketSum += price
+                    if not offerApplied : basketSum += price
 
         return basketSum
 
+print(checkout("BABDDCAC"))
 
 
 
