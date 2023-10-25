@@ -5,8 +5,9 @@ prices = {
     'A' : {
         'price' : 50,
         'offers' : {
+            '5A' : 200,
             '3A' : 130,
-            '5A' : 200
+            
         },
     },
     'B' : {
@@ -52,9 +53,11 @@ def checkout(skus):
                 price = prices[item]['prices']
                 offers = prices[item]['offers']
 
-                # calculate 
+                # calculate cost of each sku
                 for i in range(itemCount):
                     offerApplied = False
+
+                    # sift through offers, apply higher offers first
 
                     # check for offers
                     if 'offer' in prices[item] :
@@ -81,6 +84,7 @@ def checkout(skus):
                         basketSum += (itemCount * prices[item]['price'])
 
         return basketSum
+
 
 
 
