@@ -1,4 +1,5 @@
 from collections import Counter
+from itertools import combinations
 
 # nested dict to track sku prices & offers
 prices = {
@@ -63,8 +64,8 @@ def checkout(skus):
             for offer, discount in sorted(offers.items(), key=sortOffersByHighestQuantity, reverse=True):
                 # retrieve offer quantity (e.g. 3A)
                 offerQuantity = int(offer[0])
-                combinations = itemCount // offerQuantity
-                itemCombinations.extend([offer] * combinations)
+                numCombinations = itemCount // offerQuantity
+                itemCombinations.extend([offer] * numCombinations)
 
             offerCombinations = [ combination + [itemOffer] for combination in offerCombinations for itemOffer in itemCombinations ]
 
@@ -74,6 +75,13 @@ def checkout(skus):
             _basketSum = 0
 
             for itemOffer in offerCombination:
+                item = itemOffer[-1]
+                offerQuantity = int(itemOffer[0])
+                price = prices[item]['price']
+
+                # apply simple offers
+                if isinstance(prices[item]['offers'], int):
+                    basketSum += discount
 
 
 
@@ -121,6 +129,7 @@ def checkout(skus):
         return basketSum
 
 print(checkout('AAA'))
+
 
 
 
