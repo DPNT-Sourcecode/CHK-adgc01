@@ -141,6 +141,12 @@ def checkout(skus):
                 #         basketSum += price
                 #         itemCount -= 1
 
+            for item, itemCount in tempBasket.items():
+                price = prices[item]['price']
+                tempBasketSum += itemCount * price
+        
+            basketSum = min(basketSum, tempBasketSum)
+    
         return basketSum
 
-print(checkout('AAA'))
+
