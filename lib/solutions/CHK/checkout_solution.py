@@ -82,7 +82,8 @@ def checkout(skus):
 
                 # apply simple offers
                 if isinstance(offerPrice, int):
-                    tempBasketSum += (tempBasketSum[item] // offerQuantity) * offerPrice
+                    print(f"Temp bask item {tempBasket[item]//offerQuantity}")
+                    tempBasketSum += (tempBasket[item] // offerQuantity) * offerPrice
                     tempBasket -= (tempBasket[item] // offerQuantity) * offerQuantity
                 
                 # apply discount on related item (e.g. 2E => -1B from basket)
@@ -150,4 +151,5 @@ def checkout(skus):
         return basketSum
 
 print(checkout("BEBEEE"))
+
 
