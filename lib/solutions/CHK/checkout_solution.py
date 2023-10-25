@@ -178,6 +178,3 @@ print(checkout('AAA'))
 #             basketSum = min(basketSum, tempBasketSum)
     
 #         return basketSum
-
-
-
