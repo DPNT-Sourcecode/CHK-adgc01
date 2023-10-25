@@ -39,7 +39,7 @@ def checkout(skus):
         return -1
     else :
 
-        basket, basketSum = {}, 0
+        basket, basketSum = {}, float('inf')
 
         # count occurrences of each sku
         for sku in skus:
@@ -91,8 +91,6 @@ def checkout(skus):
 
                             # offer applied, reduce total item count by offer minimum amount (e.g 4A-3A)
                             itemCount -= minOfferQuantity
-
-                            # update offer applied flag & exit loop
                             offerApplied = True
                             break
 
@@ -104,3 +102,4 @@ def checkout(skus):
         return basketSum
 
 print(checkout('AAA'))
+
