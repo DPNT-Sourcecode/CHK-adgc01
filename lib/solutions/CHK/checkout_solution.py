@@ -5,8 +5,8 @@ prices = {
     'A' : {
         'price' : 50,
         'offers' : {
-            '5A' : 200,
             '3A' : 130,
+            '5A' : 200,
             
         },
     },
@@ -61,7 +61,7 @@ def checkout(skus):
                     offerApplied = False
 
                     # offer exist, apply higher offers first
-                    for offer, discount in sorted(offers.items()):
+                    for offer, discount in sorted(offers.items(), key=, reverse=True):
                         
                         # retrieve offer quantity (e.g. 3A)
                         minOfferQuantity = int(offer[0])
@@ -97,5 +97,6 @@ def checkout(skus):
                         basketSum += price
 
         return basketSum
+
 
 
