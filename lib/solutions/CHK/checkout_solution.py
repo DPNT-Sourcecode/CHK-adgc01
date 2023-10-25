@@ -65,9 +65,11 @@ def checkout(skus):
                 # get offer combinations
                 for offer, discount in sorted(offers.items(), key=sortOffersByHighestQuantity, reverse=True):
                     # retrieve offer quantity (e.g. 3A)
-                    minOfferQuantity = int(offer[0])
-                    combinations = itemCount // minOfferQuantity
+                    offerQuantity = int(offer[0])
+                    combinations = itemCount // offerQuantity
+                    itemCombinations.extend([offer] * combinations)
 
+                offerCombinations = [ combination for combination in offerCombinations for itemOffer in itemCombinations ]
 
                 # calculate cost of each sku
                 while itemCount > 0:
@@ -77,10 +79,10 @@ def checkout(skus):
                     for offer, discount in sorted(offers.items(), key=sortOffersByHighestQuantity, reverse=True):
                         
                         # retrieve offer quantity (e.g. 3A)
-                        minOfferQuantity = int(offer[0])
+                        offerQuantity = int(offer[0])
 
                         # apply offers until item count < minimum offer quantities
-                        if itemCount >= minOfferQuantity:
+                        if itemCount >= offerQuantity:
 
                             # apply simple offers
                             if isinstance(discount, int):
@@ -95,13 +97,13 @@ def checkout(skus):
 
                                 # apply bogo offer, remove free item from basket
                                 if relatedItemCount > 0:
-                                    basketSum += (price * minOfferQuantity)
+                                    basketSum += (price * offerQuantity)
                                     basket[relatedItem] -= 1
                                 else:
                                     basketSum += (price * itemCount)
 
                             # offer applied, reduce total item count by offer minimum amount (e.g 4A-3A)
-                            itemCount -= minOfferQuantity
+                            itemCount -= offerQuantity
                             offerApplied = True
                             break
 
@@ -113,6 +115,7 @@ def checkout(skus):
         return basketSum
 
 print(checkout('AAA'))
+
 
 
 
