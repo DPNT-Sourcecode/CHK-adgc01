@@ -7,7 +7,6 @@ prices = {
         'offers' : {
             '3A' : 130,
             '5A' : 200,
-            
         },
     },
     'B' : {
@@ -100,6 +99,7 @@ def checkout(skus):
                         basketSum += price
 
         return basketSum
+
 
 
 
