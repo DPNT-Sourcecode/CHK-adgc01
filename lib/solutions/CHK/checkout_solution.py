@@ -5,16 +5,13 @@ prices = {
     'A' : {
         'price' : 50,
         'offers' : {
-            3 : 130,
-            5 : 200
+            '3A' : 130,
+            '5A' : 200
         },
     },
     'B' : {
         'price' : 30,
-        'offers' : {
-            'count' : 2,
-            'discount_price' : 45,
-        },
+        'offers' : { '2B' : 45 },
     },
     'C' : {
         'price' : 20,
@@ -26,10 +23,7 @@ prices = {
     },
     'E' : {
         'price' : 40,
-        'offers' : {
-            'count' : 2,
-            'discount_price' : 10, # price of E - price of B, offer 2E >>> offer 2B
-        },
+        'offers' : { '2E' : -30 } # 2E => -1B
     },
 }
 
@@ -82,5 +76,6 @@ def checkout(skus):
 
 
 print(checkout("AAABBEE"))
+
 
 
