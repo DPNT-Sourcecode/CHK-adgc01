@@ -71,8 +71,8 @@ def checkout(skus):
 
         # try all offer combinations and pick the one with the lowest amount
         for offerCombination in offerCombinations:
-            _basket = dict(basket)
-            _basketSum = 0
+            tempBasket = dict(basket)
+            tempBasketSum = 0
 
             for itemOffer in offerCombination:
                 item = itemOffer[-1]
@@ -82,71 +82,65 @@ def checkout(skus):
 
                 # apply simple offers
                 if isinstance(offerPrice, int):
-                    _basketSum += (_basketSum[item] // offerQuantity) * offerPrice
-                    _basket -= (_basket[item] // offerQuantity) * offerQuantity
+                    tempBasketSum += (tempBasketSum[item] // offerQuantity) * offerPrice
+                    tempBasket -= (tempBasket[item] // offerQuantity) * offerQuantity
                 
                 # apply discount on related item (e.g. 2E => -1B from basket)
                 else:
                     # check if basket contains related offer item
                     relatedItem = offerPrice
-                    relatedItemCount = _basket.get(relatedItem, 0)
+                    relatedItemCount = tempBasket.get(relatedItem, 0)
 
                     # apply bogo offer, remove free item from basket
                     if relatedItemCount > 0:
-                        basketSum += (price * offerQuantity)
-                        basket[relatedItem] -= 1
+                        tempBasketSum += (price * offerQuantity)
+                        tempBasket[relatedItem] -= 1
+                        tempBasket[item] -= offerQuantity
                     else:
                         basketSum += (price * itemCount)
 
 
                 # calculate cost of each sku
-                while itemCount > 0:
-                    offerApplied = False
+                # while itemCount > 0:
+                #     offerApplied = False
 
-                    # offer exist, apply higher offers first
-                    for offer, discount in sorted(offers.items(), key=sortOffersByHighestQuantity, reverse=True):
+                #     # offer exist, apply higher offers first
+                #     for offer, discount in sorted(offers.items(), key=sortOffersByHighestQuantity, reverse=True):
                         
-                        # retrieve offer quantity (e.g. 3A)
-                        offerQuantity = int(offer[0])
+                #         # retrieve offer quantity (e.g. 3A)
+                #         offerQuantity = int(offer[0])
 
-                        # apply offers until item count < minimum offer quantities
-                        if itemCount >= offerQuantity:
+                #         # apply offers until item count < minimum offer quantities
+                #         if itemCount >= offerQuantity:
 
-                            # apply simple offers
-                            if isinstance(discount, int):
-                                basketSum += discount
+                #             # apply simple offers
+                #             if isinstance(discount, int):
+                #                 basketSum += discount
                             
-                            # apply discount on related item (e.g. 2E => -1B from basket)
-                            else:
+                #             # apply discount on related item (e.g. 2E => -1B from basket)
+                #             else:
 
-                                # check if basket contains related offer item
-                                relatedItem = discount
-                                relatedItemCount = basket.get(relatedItem, 0)
+                #                 # check if basket contains related offer item
+                #                 relatedItem = discount
+                #                 relatedItemCount = basket.get(relatedItem, 0)
 
-                                # apply bogo offer, remove free item from basket
-                                if relatedItemCount > 0:
-                                    basketSum += (price * offerQuantity)
-                                    basket[relatedItem] -= 1
-                                else:
-                                    basketSum += (price * itemCount)
+                #                 # apply bogo offer, remove free item from basket
+                #                 if relatedItemCount > 0:
+                #                     basketSum += (price * offerQuantity)
+                #                     basket[relatedItem] -= 1
+                #                 else:
+                #                     basketSum += (price * itemCount)
 
-                            # offer applied, reduce total item count by offer minimum amount (e.g 4A-3A)
-                            itemCount -= offerQuantity
-                            offerApplied = True
-                            break
+                #             # offer applied, reduce total item count by offer minimum amount (e.g 4A-3A)
+                #             itemCount -= offerQuantity
+                #             offerApplied = True
+                #             break
 
-                    # no offers applied
-                    if not offerApplied :
-                        basketSum += price
-                        itemCount -= 1
+                #     # no offers applied
+                #     if not offerApplied :
+                #         basketSum += price
+                #         itemCount -= 1
 
         return basketSum
 
 print(checkout('AAA'))
-
-
-
-
-
-
-
