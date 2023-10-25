@@ -63,7 +63,7 @@ def checkout(skus):
                         # retrieve offer quantity e.g. 3A
                         minOfferQuantity = int(offer[0])
 
-                        # apply offer discount
+                        # apply offers until item count < minimum offer quantities
                         if itemCount >= minOfferQuantity:
 
                             # apply simple offers
@@ -76,8 +76,11 @@ def checkout(skus):
                                 print('TODO Bogo offer')
                             
                         # offer applied, reduce total item count by offer minimum amount (e.g 4A-3A)
-                        # 
+                        itemCount -= minOfferQuantity
 
+                        # update offer applied flag & exit
+                        offerApplied = True
+                        break
 
 
                     # base prices apply
@@ -89,6 +92,7 @@ def checkout(skus):
                         basketSum += price
 
         return basketSum
+
 
 
 
