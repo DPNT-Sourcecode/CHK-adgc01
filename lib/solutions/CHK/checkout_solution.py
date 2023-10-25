@@ -59,7 +59,7 @@ def checkout(skus):
                 offers = prices[item]['offers']
 
                 # calculate cost of each sku
-                for _ in range(itemCount):
+                while itemCount > 0:
                     offerApplied = False
 
                     # offer exist, apply higher offers first
@@ -73,7 +73,6 @@ def checkout(skus):
 
                             # apply simple offers
                             if isinstance(discount, int):
-                                print("offers")
                                 basketSum += discount
                             
                             # apply discount on related item (e.g. 2E => -1B from basket)
@@ -97,12 +96,13 @@ def checkout(skus):
 
                     # no offers applied
                     if not offerApplied :
-                        print("No offers")
                         basketSum += price
+                        itemCount -= 1
 
         return basketSum
 
 print(checkout('AAA'))
+
 
 
 
