@@ -43,6 +43,9 @@ def checkout(skus):
         basketSum = 0
         for item, itemCount in basket.items():
 
+            # retrieve item info
+            price = prices[item]['prices']
+            offers = itemInfo['offers']
             # invalid skus
             if item not in prices:
                 return -1
@@ -74,6 +77,7 @@ def checkout(skus):
                     basketSum += (itemCount * prices[item]['price'])
 
         return basketSum
+
 
 
 
