@@ -45,7 +45,7 @@ def checkout(skus):
             if item not in prices:
                 return -1
             else :
-
+                print(f"Basket {basket}")
                 # retrieve sku info
                 price = prices[item]['price']
                 offers = prices[item]['offers']
@@ -91,3 +91,6 @@ def checkout(skus):
                         basketSum += price
 
         return basketSum
+
+print(checkout('ABCDEF'))
+
