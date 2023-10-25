@@ -38,45 +38,50 @@ def checkout(skus):
         # split string into list & count occurrences of each character
         skus = list(skus)
         basket = Counter(skus)
+        basketSum = 0
 
         # calculate basket sum
-        basketSum = 0
         for item, itemCount in basket.items():
 
-            # retrieve item info
-            price = prices[item]['prices']
-            offers = itemInfo['offers']
             # invalid skus
             if item not in prices:
                 return -1
             else :
 
-                # check for offers
-                if 'offer' in prices[item] :
+                # retrieve sku info
+                price = prices[item]['prices']
+                offers = prices[item]['offers']
 
-                    # 
-                    # base prices apply
-                    if itemCount < prices[item]['offer']['count']:
+                # calculate 
+                for i in range(itemCount):
+                    offerApplied = False
+
+                    # check for offers
+                    if 'offer' in prices[item] :
+
+                        # base prices apply
+                        if itemCount < prices[item]['offer']['count']:
+                            basketSum += (itemCount * prices[item]['price'])
+
+                        # offer prices apply
+                        else:
+
+                            # apply offer multiple times
+                            if itemCount % prices[item]['offer']['count'] == 0 :
+                                basketSum += (itemCount/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
+                            
+                            # some quantities qualify for offer
+                            else:
+                                offerEligible = (itemCount // prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
+                                offerInEligible = (itemCount % prices[item]['offer']['count']) * prices[item]['price']
+                                basketSum += offerEligible + offerInEligible
+
+                    # doesn't meet offer minimum
+                    else :
                         basketSum += (itemCount * prices[item]['price'])
 
-                    # offer prices apply
-                    else:
-
-                        # apply offer multiple times
-                        if itemCount % prices[item]['offer']['count'] == 0 :
-                            basketSum += (itemCount/prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
-                        
-                        # some quantities qualify for offer
-                        else:
-                            offerEligible = (itemCount // prices[item]['offer']['count']) * prices[item]['offer']['discount_price']
-                            offerInEligible = (itemCount % prices[item]['offer']['count']) * prices[item]['price']
-                            basketSum += offerEligible + offerInEligible
-
-                # doesn't meet offer minimum
-                else :
-                    basketSum += (itemCount * prices[item]['price'])
-
         return basketSum
+
 
 
 
