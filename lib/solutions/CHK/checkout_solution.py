@@ -61,22 +61,10 @@ def checkout(skus):
                     for offer, discount in sorted(offers.items()):
                         offerQuantity = int(offer[0])
 
+
+
                         # check if offer quantities apply
-                        if
-
-
-
-
-
-                    # check for offers
-                    # if 'offer' in prices[item] :
-
-                        # base prices apply
-                        if itemCount < prices[item]['offer']['count']:
-                            basketSum += (itemCount * prices[item]['price'])
-
-                        # offer prices apply
-                        else:
+                        if itemCount >= offerQuantity:
 
                             # apply offer multiple times
                             if itemCount % prices[item]['offer']['count'] == 0 :
@@ -88,9 +76,14 @@ def checkout(skus):
                                 offerInEligible = (itemCount % prices[item]['offer']['count']) * prices[item]['price']
                                 basketSum += offerEligible + offerInEligible
 
-                    # doesn't meet offer minimum
+                        # base prices apply
+                        else:
+                            basketSum += (itemCount * prices[item]['price'])
+
+                    # doesn't meet offer minimum quantity
                     else :
-                        basketSum += (itemCount * prices[item]['price'])
+                        basketSum += price
 
         return basketSum
+
 
