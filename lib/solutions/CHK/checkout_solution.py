@@ -36,6 +36,8 @@ def checkout(skus):
     if(not isinstance(skus, str)) :
         return -1
     else :
+
+        for basketItem, 
         # split string into list & count occurrences of each character
         skus = list(skus)
         basket, basketSum = Counter(skus), 0
@@ -96,4 +98,5 @@ def checkout(skus):
         return basketSum
 
 print(checkout("A"))
+
 
