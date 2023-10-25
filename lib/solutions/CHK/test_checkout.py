@@ -11,6 +11,9 @@ testData = [
     { "basket" : "ABCDE", "expectedSum" : 155 },
     { "basket" : "AAA",   "expectedSum" : 130 },
     { "basket" : "AAAA",  "expectedSum" : 180 },
+    { "basket" : "EE",    "expectedSum" : 80 },
+    { "basket" : "BEBEEE", "expectedSum" : 160 },
+    { "basket" : "ABCDEABCDE", "expectedSum" : 280 },
 ]
 
 def test_checkout():
@@ -25,4 +28,5 @@ def test_checkout():
 
 
 test_checkout()
+
 

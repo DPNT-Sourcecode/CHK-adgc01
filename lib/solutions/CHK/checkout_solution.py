@@ -86,6 +86,8 @@ def checkout(skus):
                                 if relatedItemCount > 0:
                                     basketSum += (price * minOfferQuantity)
                                     basket[relatedItem] -= 1
+                                else:
+                                    basketSum += price
 
                             # offer applied, reduce total item count by offer minimum amount (e.g 4A-3A)
                             itemCount -= minOfferQuantity
@@ -102,6 +104,7 @@ def checkout(skus):
         return basketSum
 
 print(checkout('AAA'))
+
 
 
 
