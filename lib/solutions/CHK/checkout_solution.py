@@ -42,6 +42,7 @@ def checkout(skus):
         # calculate basket sum
         for item, itemCount in basket.items():
 
+            print(f"Basket {basket} | {item} | {itemCount}")
             # invalid skus
             if item not in prices:
                 return -1
@@ -63,6 +64,7 @@ def checkout(skus):
 
                         # apply offers until item count < minimum offer quantities
                         if itemCount >= minOfferQuantity:
+                            print("Offer applies")
 
                             # apply simple offers
                             if isinstance(discount, int):
@@ -72,6 +74,8 @@ def checkout(skus):
                             else:
                                 # TODO handle discount for 2E
                                 print('TODO Bogo offer')
+                                print("No offers")
+                                basketSum += price
                             
                         # offer applied, reduce total item count by offer minimum amount (e.g 4A-3A)
                         itemCount -= minOfferQuantity
@@ -81,11 +85,14 @@ def checkout(skus):
                         break
 
                     # doesn't meet offer minimum quantity
-                    if not offerApplied : basketSum += price
+                    if not offerApplied :
+                        print("No offers")
+                        basketSum += price
 
         return basketSum
 
 print(checkout("B"))
+
 
 
 
