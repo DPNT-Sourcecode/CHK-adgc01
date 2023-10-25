@@ -48,7 +48,7 @@ def checkout(skus):
             else :
 
                 # retrieve sku info
-                price = prices[item]['prices']
+                price = prices[item]['price']
                 offers = prices[item]['offers']
 
                 # calculate cost of each sku
@@ -85,7 +85,7 @@ def checkout(skus):
 
         return basketSum
 
-print(checkout("BABDDCAC"))
+print(checkout("B"))
 
 
 
