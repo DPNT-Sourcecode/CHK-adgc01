@@ -97,7 +97,3 @@ def checkout(skus):
                         basketSum += price
 
         return basketSum
-
-
-
-

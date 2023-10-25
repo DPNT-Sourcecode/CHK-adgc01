@@ -1,4 +1,6 @@
 
+import pytest 
+
 from checkout_solution import checkout
 
 testData = [
@@ -14,12 +16,11 @@ testData = [
 def test_checkout():
     for test in testData:
         basket, expectedSum = test["basket"], test["expectedSum"]
-        # print(checkout(basket))
-        assert checkout(basket) == expectedSum
+        receivedSum = checkout(basket)
+        assert receivedSum == expectedSum
     
     print("Passed")
+    pass
 
 
 test_checkout()
-
-
