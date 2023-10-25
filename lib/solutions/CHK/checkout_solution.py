@@ -78,11 +78,25 @@ def checkout(skus):
                 item = itemOffer[-1]
                 offerQuantity = int(itemOffer[0])
                 price = prices[item]['price']
+                offerPrice = prices[item]['offers'][itemOffer]
 
                 # apply simple offers
-                if isinstance(prices[item]['offers'], int):
-                    basketSum += discount
+                if isinstance(offerPrice, int):
+                    _basketSum += (_basketSum[item] // offerQuantity) * offerPrice
+                    _basket -= (_basket[item] // offerQuantity) * offerQuantity
+                
+                # apply discount on related item (e.g. 2E => -1B from basket)
+                else:
+                    # check if basket contains related offer item
+                    relatedItem = offerPrice
+                    relatedItemCount = _basket.get(relatedItem, 0)
 
+                    # apply bogo offer, remove free item from basket
+                    if relatedItemCount > 0:
+                        basketSum += (price * offerQuantity)
+                        basket[relatedItem] -= 1
+                    else:
+                        basketSum += (price * itemCount)
 
 
                 # calculate cost of each sku
@@ -129,6 +143,7 @@ def checkout(skus):
         return basketSum
 
 print(checkout('AAA'))
+
 
 
 
