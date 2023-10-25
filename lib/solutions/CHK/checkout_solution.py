@@ -28,6 +28,9 @@ prices = {
     },
 }
 
+def sortOffersByHighestQuantity(offer):
+    return int(offer[0][0])
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -61,7 +64,7 @@ def checkout(skus):
                     offerApplied = False
 
                     # offer exist, apply higher offers first
-                    for offer, discount in sorted(offers.items(), key=, reverse=True):
+                    for offer, discount in sorted(offers.items(), key=sortOffersByHighestQuantity, reverse=True):
                         
                         # retrieve offer quantity (e.g. 3A)
                         minOfferQuantity = int(offer[0])
@@ -97,6 +100,7 @@ def checkout(skus):
                         basketSum += price
 
         return basketSum
+
 
 
 
