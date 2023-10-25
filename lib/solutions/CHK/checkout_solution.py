@@ -24,7 +24,7 @@ prices = {
     },
     'E' : {
         'price' : 40,
-        'offers' : { '2E' : -30 } # 2E => -1B
+        'offers' : { '2E' : 'B' } # 2E => -1B
     },
 }
 
@@ -72,10 +72,16 @@ def checkout(skus):
                             else:
                                 # TODO handle discount for 2E
                                 print('TODO Bogo offer')
+
+                                # check if basket contains related offer item
                                 relatedItem = discount
-                                relatedItemCount = 
-                                basketSum += price
-                            
+                                relatedItemCount = basket.get(relatedItem, 0)
+
+                                # check if basket contains related offer item
+                                if relatedItemCount > 0:
+                                    basketSum += (price * minOfferQuantity)
+                                    basket[relatedItem] -= 1
+
                         # offer applied, reduce total item count by offer minimum amount (e.g 4A-3A)
                         itemCount -= minOfferQuantity
 
@@ -90,7 +96,7 @@ def checkout(skus):
 
         return basketSum
 
-print(checkout("B"))
+print(checkout("EEB"))
 
 
 
