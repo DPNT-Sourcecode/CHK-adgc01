@@ -37,11 +37,12 @@ def checkout(skus):
         return -1
     else :
         # split string into list & count occurrences of each character
-        basket, basketSum = Counter(list(skus)), 0
-        print(f"Basket {basket.items()}")
+        skus = list(skus)
+        basket, basketSum = Counter(skus), 0
 
         # calculate basket sum
         for item, itemCount in basket.items():
+            print(f"Item {item}, Sum {basketSum}")
             # invalid skus
             if item not in prices:
                 return -1
@@ -88,10 +89,11 @@ def checkout(skus):
 
                     # no offers applied
                     if not offerApplied :
+                        print("No offers applied")
                         basketSum += price
 
         print(f"Basket {basket}")
         return basketSum
 
-print(checkout('ABCDE'))
+print(checkout("A"))
 
