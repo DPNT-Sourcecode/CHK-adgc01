@@ -23,13 +23,14 @@ prices = {
     },
     'E' : {
         'price' : 40,
-        'offers' : { '2E' : -30 } # 2E => -1B
+        'offers' : { '2E' : 10 } # 2E => -1B
     },
 }
 
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
+
     # invalid input
     if(not isinstance(skus, str)) :
         return -1
@@ -74,8 +75,6 @@ def checkout(skus):
 
         return basketSum
 
-
-print(checkout("AAABBEE"))
 
 
 
