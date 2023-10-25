@@ -28,5 +28,3 @@ def test_checkout():
 
 
 test_checkout()
-
-
